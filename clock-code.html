@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title>Color Clock</title>
+	<style>
+	p
+	{
+		text-align: center;
+		border: black;
+		border-width: 2px;
+		font-size: 200%;
+		padding-top: 125px;
+	}
+	</style>
+	<body>
+		<p id="clock"></p>
+		<p id="color"></p>
+
+		<script type="text/javascript">
+			function tick()
+			{
+			const day = new Date()
+			const time = day.getSeconds()
+			document.getElementById("clock").innerHTML = time
+			let color
+			let colorName
+			let clockColor
+			if (time > 0) {
+				color = document.getElementById("color").style.color= "blue";
+				colorName = document.getElementById("color").innerHTML ="Blue";
+				clockColor = document.getElementById("clock").style.color= "blue";
+			}
+			if (time > 10) {
+				color = document.getElementById("color").style.color= "red";
+				colorName = document.getElementById("color").innerHTML = "Red";
+				clockColor = document.getElementById("clock").style.color= "red";
+			}
+			if (time > 20) {
+				color = document.getElementById("color").style.color= "Orange";
+				colorName = document.getElementById("color").innerHTML = "Orange";
+				clockColor = document.getElementById("clock").style.color= "orange";
+			}
+			if (time > 30) {
+				color = document.getElementById("color").style.color= "Purple";
+				colorName = document.getElementById("color").innerHTML = "Purple";
+				clockColor = document.getElementById("clock").style.color= "purple";
+			}
+			if (time > 40) {
+				color = document.getElementById("color").style.color= "Green";
+				colorName = document.getElementById("color").innerHTML = "Green";
+				clockColor = document.getElementById("clock").style.color= "green";
+			}
+			if (time > 50) {
+				color = document.getElementById("color").style.color= "Tomato";
+				colorName = document.getElementById("color").innerHTML = "Tomato";
+				clockColor = document.getElementById("clock").style.color= "tomato";
+			}
+
+
+		    }	
+			setInterval (tick, 1000)
+		
+		</script>
+	</body>
+</head>
+</html>
