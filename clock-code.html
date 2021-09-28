@@ -16,48 +16,40 @@
 		<p id="color"></p>
 
 		<script type="text/javascript">
-			function tick()
-			{
-			const day = new Date()
-			const time = day.getSeconds()
-			document.getElementById("clock").innerHTML = time
-			let color
-			let colorName
-			let clockColor
-			if (time > 0) {
-				color = document.getElementById("color").style.color= "blue";
-				colorName = document.getElementById("color").innerHTML ="Blue";
-				clockColor = document.getElementById("clock").style.color= "blue";
+			function getColor(time) {
+				let result = "blue";
+				if (time >= 0 && time < 10) {
+					result = "blue";
+				}
+				else if (time >= 10 && time < 20) {
+					result = "red";
+				}
+				else if (time >= 20 && time < 30) {
+					result = "orange";
+				}
+				else if (time >= 30 && time < 40) {
+					result = "purple";
+				}
+				else if (time >= 40 && time < 50) {
+					result = "green";
+				}
+				else if (time >= 50 && time < 60) {
+					result = "tomato";
+				}
+				return result;
 			}
-			if (time > 10) {
-				color = document.getElementById("color").style.color= "red";
-				colorName = document.getElementById("color").innerHTML = "Red";
-				clockColor = document.getElementById("clock").style.color= "red";
-			}
-			if (time > 20) {
-				color = document.getElementById("color").style.color= "Orange";
-				colorName = document.getElementById("color").innerHTML = "Orange";
-				clockColor = document.getElementById("clock").style.color= "orange";
-			}
-			if (time > 30) {
-				color = document.getElementById("color").style.color= "Purple";
-				colorName = document.getElementById("color").innerHTML = "Purple";
-				clockColor = document.getElementById("clock").style.color= "purple";
-			}
-			if (time > 40) {
-				color = document.getElementById("color").style.color= "Green";
-				colorName = document.getElementById("color").innerHTML = "Green";
-				clockColor = document.getElementById("clock").style.color= "green";
-			}
-			if (time > 50) {
-				color = document.getElementById("color").style.color= "Tomato";
-				colorName = document.getElementById("color").innerHTML = "Tomato";
-				clockColor = document.getElementById("clock").style.color= "tomato";
-			}
-
-
+			function tick() {
+				const day = new Date();
+				const seconds = day.getSeconds();
+				const time = new Date().toLocaleTimeString()
+				document.getElementById("clock").innerHTML = time; 
+				let color = getColor(seconds);
+				document.getElementById("color").style.color = color;
+				document.getElementById("color").innerHTML = color;
+				document.getElementById("clock").style.color = color;
 		    }	
-			setInterval (tick, 1000)
+		    
+			setInterval(tick, 1000);
 		
 		</script>
 	</body>
