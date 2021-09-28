@@ -43,10 +43,10 @@
 				const seconds = day.getSeconds();
 				const time = new Date().toLocaleTimeString()
 				document.getElementById("clock").innerHTML = time; 
-				let color = getColor(seconds);
-				document.getElementById("color").style.color = color;
-				document.getElementById("color").innerHTML = color;
-				document.getElementById("clock").style.color = color;
+				let colortouse = getColor(seconds);
+				document.getElementById("color").style.color = colortouse;
+				document.getElementById("color").innerHTML = colortouse;
+				document.getElementById("clock").style.color = colortouse;
 		    }	
 		    
 			setInterval(tick, 1000);
