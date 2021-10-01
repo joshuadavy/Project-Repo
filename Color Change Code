@@ -1,3 +1,4 @@
+<html>
 <body>
   <div id="root" style="text-align:center;"></div>    
   <div id="clock" style="text-align:center;">yes</div>
@@ -38,4 +39,5 @@
 
   </script>
 </body>
+</html>
 
