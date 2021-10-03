@@ -1,0 +1,77 @@
+<html>
+<body>
+  <div id="root" style="text-align:center;"></div>   
+  <div id="clock" style="text-align:center;"></div> 
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+
+           function tick(){
+            const time = new Date().toLocaleTimeString()
+      const element = (
+      <>
+      <input readOnly value = {time} />
+      </>
+      )
+      ReactDOM.render(element, document.getElementById('clock'))
+          }
+          setInterval(tick, 1000)
+
+    function Colorchange(){ 
+      const [newcolor, setColor] = React.useState(window.localStorage.getItem('newcolor') ||'',)
+      React.useEffect(() => {
+        window.localStorage.setItem('newcolor', newcolor)
+        })
+      const handleColor = event => setColor(event.target.value)
+          return (
+          <div>
+            <h1>
+          <form>
+          <label htmlFor = "newcolor">Color: </label>
+          <input onBlur = {handleColor} id = "newcolor" />
+          <button type="Submit">Enter</button>
+          </form>
+          <p>
+          {newcolor ? <strong> It's {getColor()} </strong>: 'Please Type a Color'}
+          </p>
+        </h1>
+          </div>
+            );
+
+           function getColor(time) {
+        let result = "blue";
+        if (time >= 0 && time < 10) {
+          result = "blue";
+        }
+        else if (time >= 10 && time < 20) {
+          result = "red";
+        }
+        else if (time >= 20 && time < 30) {
+          result = "orange";
+        }
+        else if (time >= 30 && time < 40) {
+          result = "purple";
+        }
+        else if (time >= 40 && time < 50) {
+          result = "green";
+        }
+        else if (time >= 50 && time < 60) {
+          result = "tomato";
+        }
+        return (
+
+        document.getElementById('root').style.color = newcolor);
+            
+          }
+
+      }
+
+       
+
+      ReactDOM.render(<Colorchange />, document.getElementById('root')) 
+        
+     
+  </script>
+</body>
+</html>
