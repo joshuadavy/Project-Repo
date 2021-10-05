@@ -1,11 +1,12 @@
 <html>
 <body>
-  <div id="root" style="text-align:center;"></div>    
-  <div id="clock" style="text-align:center;">yes</div>
+  <div id="root" style="text-align:center;"></div>   
+  <div id="clock" style="text-align:center;"></div>  
   <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
+
 
     function Colorchange(){ 
       const [newcolor, setColor] = React.useState(window.localStorage.getItem('newcolor') ||'',)
@@ -13,31 +14,62 @@
         window.localStorage.setItem('newcolor', newcolor)
         })
       const handleColor = event => setColor(event.target.value)
-
           return (
           <div>
+            <h1>
           <form>
           <label htmlFor = "newcolor">Color: </label>
           <input onBlur = {handleColor} id = "newcolor" />
           <button type="Submit">Enter</button>
           </form>
           <p>
-          {newcolor ? <strong> It's {newcolor} {getColor()} </strong>: 'Please Type a Color'}
+            {getColor()}
           </p>
+        </h1>
           </div>
-                     );
-          
-          function getColor(){
-          document.getElementById('clock').style.color = newcolor;
-          } 
+            );
+
+           function getColor(tick) {
+            function tick(){
+            const time = new Date().toLocaleTimeString()
+      const element = (
+      <>
+      <input readOnly value = {time} />
+      </>
+      )
+      ReactDOM.render(element, document.getElementById('clock'))
+          }
+          setInterval(tick, 1000)
+        let time = new Date().getSeconds()
+        let newcolor = ''
+        if (time >= 0 && time < 10) {
+          newcolor = "blue";
         }
-        
+        else if (time >= 10 && time < 20) {
+          newcolor = "red";
+        }
+        else if (time >= 20 && time < 30) {
+          newcolor = "orange";
+        }
+        else if (time >= 30 && time < 40) {
+          newcolor = "purple";
+        }
+        else if (time >= 40 && time < 50) {
+          newcolor = "green";
+        }
+        else if (time >= 50 && time < 60) {
+          newcolor = "tomato";
+        }
+        return (document.getElementById('root').style.color = newcolor);
+          }
 
-        
-    
+      }
+
+       
+
       ReactDOM.render(<Colorchange />, document.getElementById('root')) 
-
+        
+     
   </script>
 </body>
 </html>
-
