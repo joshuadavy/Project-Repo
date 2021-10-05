@@ -8,38 +8,37 @@
   <script type="text/babel">
 
 
-    function Colorchange(){ 
-      const [newcolor, setColor] = React.useState(window.localStorage.getItem('newcolor') ||'',)
+    function ColorChange() { 
+      
+      const state = {manualColor: undefined};
+      
+      function handleClick() {
+        Object.assign(state, {manualColor: document.getElementById('newcolor').value});
+        console.log('handleClick', state);
+      }
+      
+      const [newcolor, setColor] = React.useState(window.localStorage.getItem('newcolor') || '')
       React.useEffect(() => {
         window.localStorage.setItem('newcolor', newcolor)
-        })
+      })
       const handleColor = event => setColor(event.target.value)
-          return (
-          <div>
-            <h1>
-          <form>
-          <label htmlFor = "newcolor">Color: </label>
-          <input onBlur = {handleColor} id = "newcolor" />
-          <button type="Submit">Enter</button>
-          </form>
-          <p>
-            {getColor()}
-          </p>
-        </h1>
-          </div>
-            );
-
-           function getColor(tick) {
-            function tick(){
-            const time = new Date().toLocaleTimeString()
-      const element = (
-      <>
-      <input readOnly value = {time} />
-      </>
-      )
-      ReactDOM.render(element, document.getElementById('clock'))
-          }
-          setInterval(tick, 1000)
+      
+      //TODO maybe instead of rendering the element every second, let's see if we can
+      //refactor this to only update the element value.
+      function tick() {
+        const time = new Date().toLocaleTimeString()
+        console.log(time);
+        let newColor = getColor();
+        console.log(state.manualColor ? state.manualColor : newColor);
+        const element = (
+          <>
+            <input id="clockInput" readOnly value={time} style={{color: state.manualColor ? state.manualColor : newColor}}/>
+          </>
+        )
+        ReactDOM.render(element, document.getElementById('clock'))
+      }
+      
+      function getColor() {
         let time = new Date().getSeconds()
         let newcolor = ''
         if (time >= 0 && time < 10) {
@@ -60,15 +59,23 @@
         else if (time >= 50 && time < 60) {
           newcolor = "tomato";
         }
-        return (document.getElementById('root').style.color = newcolor);
-          }
-
+        return newcolor; 
       }
-
-       
-
-      ReactDOM.render(<Colorchange />, document.getElementById('root')) 
-        
+      
+      setInterval(tick, 1000);
+      
+      return (
+        <div>
+          <form>
+            <label htmlFor="newcolor">Color: </label>
+            <input onBlur={handleColor} id="newcolor"/>
+            <button type="button" onClick={handleClick}>Enter</button>
+          </form>
+        </div>
+      );
+    }
+    
+    ReactDOM.render(<ColorChange />, document.getElementById('root'))
      
   </script>
 </body>
