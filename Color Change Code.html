@@ -17,11 +17,10 @@
         console.log('handleClick', state);
       }
       
-      const [newcolor, setColor] = React.useState(window.localStorage.getItem('newcolor') || '')
+      const [manualColor] = React.useState(window.localStorage.getItem('manualColor') || '')
       React.useEffect(() => {
-        window.localStorage.setItem('newcolor', newcolor)
+        window.localStorage.setItem('manualColor', manualColor)
       })
-      const handleColor = event => setColor(event.target.value)
       
       //TODO maybe instead of rendering the element every second, let's see if we can
       //refactor this to only update the element value.
@@ -63,20 +62,22 @@
       }
       
       setInterval(tick, 1000);
+
+      function handleSubmit(event){
+    event.preventDefault()
+        }
       
       return (
         <div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <label htmlFor="newcolor">Color: </label>
-            <input onBlur={handleColor} id="newcolor"/>
-            <button type="button" onClick={handleClick}>Enter</button>
+            <input id="newcolor"/>
+            <button type="submit" onClick={handleClick}>Enter</button>
           </form>
         </div>
       );
     }
-    
-    ReactDOM.render(<ColorChange />, document.getElementById('root'))
-     
+    ReactDOM.render(<ColorChange />, document.getElementById('root')) 
   </script>
 </body>
 </html>
