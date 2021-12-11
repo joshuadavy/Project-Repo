@@ -4,6 +4,7 @@ public class TempConverter {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a Temperature");
+        // I think I would need to add some form of if statement or loop in this spot, but I am unsure
         int tempNum = Integer.parseInt(scanner.nextLine());
         int tempConv = ((tempNum - 32) * 5 / 9);
         System.out.println("Was the temperature in fahrenheit or celsius? Please Enter 'C' or 'F'");
