@@ -5,6 +5,10 @@ public class TempConverter {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a Temperature:");
         int tempNum = Integer.parseInt(scanner.nextLine());
+        do {
+
+        };
+        while ();
         int tempConv = ((tempNum - 32) * 5 / 9);
         System.out.println("Was the temperature in fahrenheit or celsius? Please Enter 'C' or 'F'");
         String tempKind = scanner.nextLine();
