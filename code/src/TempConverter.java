@@ -9,32 +9,32 @@ public class TempConverter {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a Temperature: ");
+        System.out.print("Enter a Temperature (eg 90.5F): ");
         String numberInput = scanner.nextLine().trim();
-
-        if (!isNumeric(numberInput)) {
-            System.err.println("\nInput was not a number: " + numberInput);
+        InputResult input = null;
+        try {
+            input = convertToInputResult(numberInput);
+        } catch (RuntimeException e) {
+            System.err.println("\nInput was invalid. " +
+                    "Please be sure to only type numbers, a decimal if needed, " +
+                    "and a single letter to indicate the system of measurement. ");
+            System.err.println("For Example: 32.5F");
             System.exit(1);
         }
+        
+        double celsiusConvertedTemperature = ((input.getTemperature() * 9/5)+ 32);
+        double fahrenheitConvertedTemperature = ((input.getTemperature() - 32) * 5 / 9);
 
-        double fromTemperature = Double.parseDouble(numberInput);
-
-        System.out.print("Was the temperature in fahrenheit or celsius? (Please Enter 'C' or 'F')? ");
-        String systemOfMeasurement = scanner.nextLine();
-
-        double celsiusConvertedTemperature = ((fromTemperature * 9/5)+ 32);
-        double fahrenheitConvertedTemperature = ((fromTemperature - 32) * 5 / 9);
-
-        if (systemOfMeasurement.equalsIgnoreCase("F")){
-            System.out.print(fromTemperature + systemOfMeasurement);
+        if (input.getSystemOfMeasurement().equals(SystemOfMeasurement.Fahrenheit)){
+            System.out.print("" + input.getTemperature() + SystemOfMeasurement.Fahrenheit.getAbbreviation());
             System.out.printf( " is converted to %.2f" , fahrenheitConvertedTemperature);
-            System.out.print("C");
+            System.out.print(SystemOfMeasurement.Celsius.getAbbreviation());
 
         }
         else {
-            System.out.print(fromTemperature + systemOfMeasurement);
+            System.out.print("" + input.getTemperature() + SystemOfMeasurement.Celsius.getAbbreviation());
             System.out.printf( " is converted to %.2f" , celsiusConvertedTemperature);
-            System.out.print("F");
+            System.out.print(SystemOfMeasurement.Fahrenheit.getAbbreviation());
 
         }
     }
@@ -48,12 +48,53 @@ public class TempConverter {
         if (input == null) {
             return false;
         }
-
+    
         try {
-             Double.parseDouble(input.trim());
+            Double.parseDouble(input.trim());
         } catch (NumberFormatException e) {
             return false;
         }
         return true;
+    }
+    
+    private static InputResult convertToInputResult(String userInput) {
+        if (userInput == null) {
+            return null;
+        }
+        
+        String workingInput = userInput.trim();
+        InputResult result = new InputResult();
+        
+        char [] characters = workingInput.toCharArray();
+        int indexOfFirstLetter = 0;
+        
+        for (int i=0; i < characters.length; i++) {
+            char c = characters[i];
+            if (Character.isDigit(c) || '.' == c) {
+                continue;
+            }
+            
+            // now I know I have an alphabetic character
+            indexOfFirstLetter = i;
+            break;
+        }
+        
+        // 90.5F
+        String decimalInput = workingInput.substring(0, indexOfFirstLetter);
+        String systemOfMeasurementInput = workingInput.substring(indexOfFirstLetter, indexOfFirstLetter + 1);
+        
+        if (!isNumeric(decimalInput)) {
+            throw new RuntimeException("something went terribly wrong");
+        }
+    
+        result.setTemperature(Double.parseDouble(decimalInput));
+        
+        if (systemOfMeasurementInput.equalsIgnoreCase("F")) {
+            result.setSystemOfMeasurement(SystemOfMeasurement.Fahrenheit);
+        } else {
+            result.setSystemOfMeasurement(SystemOfMeasurement.Celsius);
+        }
+        
+        return result;
     }
 }
