@@ -8,8 +8,8 @@ public class Sword extends WeaponAttributes {
         weaponAttributes.setMagicValue(0);
         weaponAttributes.setAttackValue(69);
         weaponAttributes.setDurability(100);
-        weaponAttributes.useAttack(weaponAttributes.getAttackValue(),weaponAttributes.getDescription());
         weaponAttributes.setDescription("Sword");
         weaponAttributes.setRanged(false);
+        weaponAttributes.useAttack(weaponAttributes.getAttackValue(), weaponAttributes.getDescription());
     }
 }

@@ -11,7 +11,6 @@ public class WeaponAttributes{
 
       public void useAttack(int attackValue, String description) {
             this.attackValue = attackValue;
-            this.description = description;
             this.durability = durability - 1;
             System.out.println("You attacked with " + attackValue + " attack from " + description);
             System.out.println("Your " + description + "'s durability is now " + durability);
