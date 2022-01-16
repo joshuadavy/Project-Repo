@@ -15,9 +15,6 @@ public class TodoItem {
     private boolean completed;
     private Date dateCompleted;
 
-    public void TodoItem(){
-
-    }
 
     public boolean mark(boolean completed) {
         if (this.completed){

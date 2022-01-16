@@ -1,28 +1,32 @@
 package com.joshuadavy.todo;
 
-import java.util.List;
+import java.util.ArrayList;
+
+/**
+ * @author joshdavy
+ * A Class that has attributes of a list of TodoItems in the form of an ArrayList
+ */
 
 public class TodoList {
 
-    private List name;
+    private ArrayList list = new ArrayList();
     private String createdBy;
 
-//    public void TodoList() {
-//
-//    }
-//
-//    public TodoList(name, createdBy){
-//
-//    }
-//    i will try to remember what Brian did and do this
+    public TodoList(){
 
-
-    public List getTodoList() {
-        return name;
     }
 
-    public void setTodoList(List todoList) {
-        this.name = todoList;
+
+    private void AddToList(String TodoItem){
+      list.add(TodoItem);
+    }
+
+    public ArrayList getTodoList() {
+        return list;
+    }
+
+    public void setTodoList(ArrayList todoList) {
+        this.list = todoList;
     }
 
     public String getCreatedBy() {
