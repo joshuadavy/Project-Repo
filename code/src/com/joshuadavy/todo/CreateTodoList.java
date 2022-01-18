@@ -15,7 +15,7 @@ public class CreateTodoList {
         System.out.print("Please enter a description for the todo item: ");
         item1.setDescription(scanner.nextLine().trim());
         System.out.println(item1.getDescription());
-        System.out.print("Has " + item1.getDescription() + " been completed? : ");
+        System.out.print("Has Todo Item: " + item1.getDescription() + " been completed? (eg. yes or no): ");
         String input = scanner.nextLine().trim();
         item1.mark(isMarked(input));
     }
@@ -25,11 +25,7 @@ public class CreateTodoList {
             return false;
         }
 
-        if (input.equals("yes")){
-            return true;
-        }
-
-        else return false;
+        return input.equals("yes");
 
     }
 }
