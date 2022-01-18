@@ -17,9 +17,10 @@ public class TodoItem {
 
 
     public boolean mark(boolean completed) {
-        if (this.completed){
+        if (completed){
             this.completed = true;
             this.dateCompleted = new Date();
+            System.out.println(this.description + " was completed on " + this.dateCompleted);
         }
         return false;
     }
