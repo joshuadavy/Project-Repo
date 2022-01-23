@@ -1,5 +1,6 @@
 package com.joshuadavy.todo;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -8,25 +9,18 @@ import java.util.Scanner;
  */
 
 public class CreateTodoList {
+
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         TodoItem item1 = new TodoItem();
         TodoList list1 = new TodoList();
-        System.out.print("Please enter a description for the todo item: ");
+        System.out.print("Please enter the description of this todo list: ");
+        list1.setTitleOfList(scanner.nextLine().trim());
+        System.out.print("Please enter a description for a todo item: ");
         item1.setDescription(scanner.nextLine().trim());
-        System.out.println(item1.getDescription());
-        System.out.print("Has Todo Item: " + item1.getDescription() + " been completed? (eg. yes or no): ");
-        String input = scanner.nextLine().trim();
-        item1.mark(isMarked(input));
-    }
-
-    public static boolean isMarked(String input){
-        if (input == null){
-            return false;
-        }
-
-        return input.equals("yes");
-
-    }
+        list1.setList(new ArrayList<TodoItem>());
+        list1.addToList(item1);
+        System.out.println(list1.getList() + " " + list1.getTitleOfList());
+}
 }
 

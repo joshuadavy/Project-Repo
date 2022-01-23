@@ -1,6 +1,8 @@
 package com.joshuadavy.rpg;
 
-public class WeaponAttributes{
+import sun.lwawt.macosx.CSystemTray;
+
+public class Weapon {
 
       private String description;
       private int attackValue;
@@ -8,14 +10,6 @@ public class WeaponAttributes{
       private int magicValue;
       private int durability;
 
-
-      public void useAttack(int attackValue, String description) {
-            this.attackValue = attackValue;
-            this.durability = durability - 1;
-            System.out.println("You attacked with " + attackValue + " attack from " + description);
-            System.out.println("Your " + description + "'s durability is now " + durability);
-
-      }
 
       public String getDescription() {
             return description;
@@ -51,6 +45,18 @@ public class WeaponAttributes{
 
       public void setMagicValue(int magicValue) {
             this.magicValue = magicValue;
+      }
+
+      public void useAttack() {
+            this.durability = this.durability - 1;
+            System.out.println("You attacked with " + this.attackValue + " attack from " + this.description);
+            System.out.println("Your " + this.description + "'s durability is now " + this.durability);
+            if (magicValue == 0){
+                  System.out.println("Your " + this.description + " is not a Magic Weapon");
+            }
+            else {
+                  System.out.println("Your " + this.description + " has a Magic Stat of " + this.magicValue);
+            }
       }
 
 

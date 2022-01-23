@@ -1,14 +1,13 @@
 package com.joshuadavy.rpg;
 
-public class Sword extends WeaponAttributes {
+public class Sword extends Weapon {
 
     public Sword() {
-        WeaponAttributes weaponAttributes = new WeaponAttributes();
-        weaponAttributes.setMagicValue(0);
-        weaponAttributes.setAttackValue(69);
-        weaponAttributes.setDurability(100);
-        weaponAttributes.setDescription("Sword");
-        weaponAttributes.setRanged(false);
-        weaponAttributes.useAttack(weaponAttributes.getAttackValue(), weaponAttributes.getDescription());
+        this.setMagicValue(0);
+        this.setAttackValue(15);
+        this.setDurability(100);
+        this.setDescription("Sword");
+        this.setRanged(false);
+        this.useAttack();
     }
 }
