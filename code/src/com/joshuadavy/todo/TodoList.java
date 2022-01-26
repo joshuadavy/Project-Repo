@@ -9,24 +9,25 @@ import java.util.ArrayList;
 
 public class TodoList {
 
-    private ArrayList list = new ArrayList();
+    private String titleOfList;
+    private ArrayList<TodoItem> list = new ArrayList<TodoItem>();
     private String createdBy;
 
-    public TodoList(){
 
+    public String getTitleOfList() {
+        return titleOfList;
     }
 
-
-    private void AddToList(String TodoItem){
-      list.add(TodoItem);
+    public void setTitleOfList(String titleOfList) {
+        this.titleOfList = titleOfList;
     }
 
-    public ArrayList getTodoList() {
+    public ArrayList<TodoItem> getList() {
         return list;
     }
 
-    public void setTodoList(ArrayList todoList) {
-        this.list = todoList;
+    public void setList(ArrayList<TodoItem> list) {
+        this.list = list;
     }
 
     public String getCreatedBy() {
@@ -36,4 +37,19 @@ public class TodoList {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
+
+    public void addToList(TodoItem todoItem){
+        TodoItem item = todoItem;
+        this.list.add(item);
+    }
+
+    @Override
+    public String toString() {
+        return "TodoList{" +
+                "titleOfList='" + titleOfList + '\'' +
+                ", list=" + list +
+                ", createdBy='" + createdBy + '\'' +
+                '}';
+    }
 }
+

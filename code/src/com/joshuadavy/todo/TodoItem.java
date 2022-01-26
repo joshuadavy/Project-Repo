@@ -16,15 +16,6 @@ public class TodoItem {
     private Date dateCompleted;
 
 
-    public boolean mark(boolean completed) {
-        if (completed){
-            this.completed = true;
-            this.dateCompleted = new Date();
-            System.out.println(this.description + " was completed on " + this.dateCompleted);
-        }
-        return false;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -49,4 +40,9 @@ public class TodoItem {
         this.dateCompleted = dateCompleted;
     }
 
+    public void mark() {
+        this.completed = !this.completed;
+        this.dateCompleted = this.completed ? new Date(): null;
+
+    }
 }
