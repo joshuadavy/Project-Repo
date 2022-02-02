@@ -15,6 +15,14 @@ public class TodoItem {
     private boolean completed;
     private Date dateCompleted;
 
+    public TodoItem(String description, boolean completed, Date dateCompleted){
+        this.description = description;
+        this.completed = completed;
+        this.dateCompleted = dateCompleted;
+
+
+    }
+
 
     public String getDescription() {
         return description;
@@ -44,5 +52,10 @@ public class TodoItem {
         this.completed = !this.completed;
         this.dateCompleted = this.completed ? new Date(): null;
 
+    }
+
+    @Override
+    public String toString() {
+        return "TodoItem " + description + " isCompleted? " + completed;
     }
 }
