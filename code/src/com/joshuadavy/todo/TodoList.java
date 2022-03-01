@@ -13,6 +13,12 @@ public class TodoList {
     private ArrayList<TodoItem> list = new ArrayList<TodoItem>();
     private String createdBy;
 
+//    public TodoList(String titleOfList, ArrayList<TodoItem> list, String createdBy) {
+//        this.titleOfList = titleOfList;
+//        this.list = list;
+//        this.createdBy = createdBy;
+//    }
+
 
     public String getTitleOfList() {
         return titleOfList;
@@ -45,11 +51,10 @@ public class TodoList {
 
     @Override
     public String toString() {
-        return "TodoList{" +
-                "titleOfList='" + titleOfList + '\'' +
-                ", list=" + list +
-                ", createdBy='" + createdBy + '\'' +
-                '}';
+        return
+                 titleOfList + '\'' +
+                  list +
+                  createdBy + '\'';
     }
 }
 

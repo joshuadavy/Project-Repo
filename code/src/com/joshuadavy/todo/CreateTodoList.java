@@ -1,7 +1,11 @@
 package com.joshuadavy.todo;
 
-import java.util.ArrayList;
+
+import java.util.Locale;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author joshdavy
@@ -10,17 +14,37 @@ import java.util.Scanner;
 
 public class CreateTodoList {
 
-    public static void main(String[] args){
+// I want to make this deliver the output into a file, I want to do this on my own
+
+    public static void main(String[] args) throws IOException {
+
         Scanner scanner = new Scanner(System.in);
-        TodoItem item1 = new TodoItem();
         TodoList list1 = new TodoList();
-        System.out.print("Please enter the description of this todo list: ");
+        boolean repeatTodoItem = true;
+        File todoListFile = new File("todolist.txt");
+        FileWriter writer = new FileWriter("todolist.txt");
+
+        System.out.print("Please enter the title of this todo list: ");
         list1.setTitleOfList(scanner.nextLine().trim());
-        System.out.print("Please enter a description for a todo item: ");
-        item1.setDescription(scanner.nextLine().trim());
-        list1.setList(new ArrayList<TodoItem>());
-        list1.addToList(item1);
-        System.out.println(list1.getList() + " " + list1.getTitleOfList());
+
+            do
+            {
+                System.out.print("Please enter a description for a todo item: ");
+                String input = scanner.nextLine().trim();
+                System.out.print("");
+                list1.addToList(new TodoItem(input, false, null));
+                System.out.print("Are you done entering items? : ");
+                String stillRepeat = scanner.nextLine().toLowerCase(Locale.ROOT).trim();
+                if (stillRepeat.equals("yes")) {
+                    repeatTodoItem = false;
+                }
+            }
+            while (repeatTodoItem);
+
+
+        System.out.println(list1.getTitleOfList() + " " + list1.getList());
+        writer.write(list1.getTitleOfList() + " " + list1.getList());
+        writer.close();
 }
 }
 
