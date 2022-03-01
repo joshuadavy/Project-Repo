@@ -51,11 +51,10 @@ public class TodoList {
 
     @Override
     public String toString() {
-        return "TodoList{" +
-                "titleOfList='" + titleOfList + '\'' +
-                ", list=" + list +
-                ", createdBy='" + createdBy + '\'' +
-                '}';
+        return
+                 titleOfList + '\'' +
+                  list +
+                  createdBy + '\'';
     }
 }
 
