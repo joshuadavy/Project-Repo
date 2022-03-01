@@ -35,6 +35,7 @@ public class WordCounter {
             }
             if (string.charAt(i) == ' ' || string.charAt(i) == '\n'
                     || string.charAt(i) == '\t') {
+
                 state = OUT;
             }
             else if (state == OUT) {
